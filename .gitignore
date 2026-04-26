@@ -1,0 +1,8 @@
+.ipynb_checkpoints/
+.venv/
+uv.lock
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+.pytest_cache/

@@ -1,0 +1,51 @@
+[project]
+name = "nn-zero-to-hero"
+version = "0.1.0"
+description = "Lecture notebooks for Andrej Karpathy's Neural Networks: Zero to Hero course."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "graphviz",
+    "ipywidgets",
+    "jupyterlab",
+]
+
+[dependency-groups]
+cpu = ["torch>=2.11.0"]
+cuda = ["torch>=2.11.0"]
+rocm = [
+    "torch>=2.11.0 ; sys_platform == 'linux'",
+    "triton-rocm==3.6.0 ; sys_platform == 'linux'",
+]
+
+[tool.uv]
+package = false
+python-preference = "system"
+conflicts = [[{ group = "cpu" }, { group = "cuda" }, { group = "rocm" }]]
+
+[tool.uv.sources]
+torch = [
+    { index = "rocm", group = "rocm" },
+    { index = "cuda", group = "cuda" },
+    { index = "cpu", group = "cpu" },
+]
+triton-rocm = { index = "rocm" }
+
+[[tool.uv.index]]
+name = "rocm"
+url = "https://download.pytorch.org/whl/rocm7.2"
+explicit = true
+
+[[tool.uv.index]]
+name = "cuda"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[[tool.uv.index]]
+name = "cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
