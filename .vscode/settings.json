@@ -1,0 +1,6 @@
+{
+  "[python]": {
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.inlineSuggest.enabled": false
+  },
+}
